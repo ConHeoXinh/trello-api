@@ -5,9 +5,13 @@ import exitHook from 'async-exit-hook'
 import { CONNECT_DB, GET_DB, CLOSE_DB } from '~/config/mongodb'
 import { env } from '~/config/environment'
 import { APIs_V1 } from '~/routes/v1'
+import cors from 'cors'
+import { corsOptions } from './config/cors'
 
 const START_SERVER = () => {
   const app = express()
+
+  app.use(cors(corsOptions))
 
   const hostname = env.APP_HOST
   const port = env.APP_PORT
